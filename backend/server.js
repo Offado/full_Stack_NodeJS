@@ -1,3 +1,5 @@
+// la méthode require il nous permet d'importer les modules de base de Node très facilement (comme le module  http ici)
+// et nous permet d'omettre l'extension  .js
 const http = require("http");
 const app = require("./app");
 
@@ -20,7 +22,7 @@ app.set("port", port);
 
 // La gestion d'erreur et du logging basique
 
-// a fonction errorHandler  recherche les différentes erreurs et les gère de manière appropriée. Elle est ensuite enregistrée dans le serveur
+// La fonction errorHandler  recherche les différentes erreurs et les gère de manière appropriée. Elle est ensuite enregistrée dans le serveur
 const errorHandler = (error) => {
   if (error.syscall !== "listen") {
     throw error;
@@ -42,6 +44,7 @@ const errorHandler = (error) => {
   }
 };
 
+// La méthode createServer crée un serveur local pour recevoir les données
 const server = http.createServer(app);
 
 server.on("error", errorHandler);
