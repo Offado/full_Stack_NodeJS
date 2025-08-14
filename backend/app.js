@@ -65,7 +65,7 @@ const mongoose = require('mongoose');
 require('dotenv').config();
 
 // Sert à se connecter à une base de données MongoDB.
-mongoose.connect(process.env.MONGO_URI)
+mongoose.connect(process.env.MONGO_URI)  // process.env est un objet global dans Node.js qui contient toutes les variables d’environnement disponibles pour ton application.
 .then(() => console.log('Connexion à MongoDB réussie !'))     // Le rappel à exécuter lorsque la promesse est résolue.
 .catch((err) => console.log('Connexion à MongoDB échouée !', err));   // Le rappel à exécuter en cas de rejet de la promesse.
 
