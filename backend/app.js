@@ -60,15 +60,13 @@ app.use("/api/stuff", (req, res, next) => {
 // On importe mongoose d'abord
 // Mongoose permet de définir des schémas pour tes données et de gérer les opérations (CRUD) plus facilement.
 const mongoose = require('mongoose');
+// sert à gérer les variables d’environnement dans un projet, généralement pour éviter de mettre des informations 
+// sensibles directement dans le code (comme des mots de passe, clés API, URL de base de données, etc.).
+require('dotenv').config();
 
 // Sert à se connecter à une base de données MongoDB.
-mongoose.connect('mongodb+srv://aoffolome:<hzhWCueFe8dnanjg>@cluster0.6vmgpt1.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0',
-  {
-    useNewUrlParser: true,   // utilise le nouvel analyseur d’URI, plus sûr et plus fiable.
-    useUnifiedTopology: true  // active le nouveau moteur de gestion des connexions de MongoDB.
-  }
-)
+mongoose.connect(process.env.MONGO_URI)
 .then(() => console.log('Connexion à MongoDB réussie !'))     // Le rappel à exécuter lorsque la promesse est résolue.
-.catch(() => console.log('Connexion à MongoDB échouée !'));   // Le rappel à exécuter en cas de rejet de la promesse.
+.catch((err) => console.log('Connexion à MongoDB échouée !', err));   // Le rappel à exécuter en cas de rejet de la promesse.
 
 module.exports = app;
